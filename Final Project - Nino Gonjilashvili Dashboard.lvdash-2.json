@@ -1,0 +1,2261 @@
+{
+  "datasets": [
+    {
+      "name": "366450b6",
+      "displayName": "billionaires_clean",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.billionaires_clean",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          },
+          {
+            "name": "Total People",
+            "expr": "COUNT(person_name)",
+            "displayName": "Total People"
+          },
+          {
+            "name": "self-made",
+            "expr": "CONCAT(CAST(ROUND(AVG(CASE WHEN is_self_made THEN 100.0 ELSE 0.0 END), 1) AS STRING), '%')",
+            "displayName": "Self Made"
+          },
+          {
+            "name": "average age",
+            "expr": "AVG(age)",
+            "displayName": "average age"
+          },
+          {
+            "name": "self-made numeric",
+            "expr": "AVG(CASE WHEN is_self_made THEN 100.0 ELSE 0.0 END)",
+            "displayName": "self-made numeric"
+          }
+        ]
+      }
+    },
+    {
+      "name": "bdafb2df",
+      "displayName": "era_summary",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.era_summary",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "160e2dc2",
+      "displayName": "historical_titans",
+      "config": {
+        "version": "1.1",
+        "source": "\nSELECT\n  person_name,\n  era,\n  industry,\n  CASE\n    WHEN peak_pct_us_gdp IS NULL THEN 'საიმედო მონაცემი არ არსებობს'\n    ELSE CONCAT(CAST(peak_pct_us_gdp AS STRING), '%')\n  END AS peak_pct_us_gdp_display,\n  years_founding_to_peak,\n  self_made,\n  note\nFROM getdata.calculated.historical_titans",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "fe8805b5",
+      "displayName": "leaders_profile",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.leaders_profile",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "4fe84aa6",
+      "displayName": "success_by_country",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.success_by_country",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "d91cff36",
+      "displayName": "success_by_industry",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.success_by_industry",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "5587d19f",
+      "displayName": "success_factors",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.success_factors",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "6360f5e0",
+      "displayName": "Georgia Context",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT\n  person_name,\n  year AS record_year,\n  net_worth_usd_billion,\n  data_source,\n  georgia_gdp_usd_billion,\n  wealth_pct_gdp,\n  COALESCE(note, 'დამატებითი ინფორმაცია არ არის ხელმისაწვდომი') AS note\nFROM getdata.calculated.georgia_context",
+        "dimensions": [
+          {
+            "name": "person_name",
+            "expr": "person_name"
+          },
+          {
+            "name": "record_year",
+            "expr": "record_year"
+          },
+          {
+            "name": "net_worth_usd_billion",
+            "expr": "net_worth_usd_billion"
+          },
+          {
+            "name": "data_source",
+            "expr": "data_source"
+          },
+          {
+            "name": "georgia_gdp_usd_billion",
+            "expr": "georgia_gdp_usd_billion"
+          },
+          {
+            "name": "wealth_pct_gdp",
+            "expr": "wealth_pct_gdp"
+          },
+          {
+            "name": "note",
+            "expr": "note"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "84b4db69",
+      "displayName": "era_summary_grouped",
+      "config": {
+        "version": "1.1",
+        "source": "getdata.calculated.era_summary_grouped",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "dc055947",
+      "displayName": "ვინ არიან ეს ადამიანები? - 1 გვერდი",
+      "layout": [
+        {
+          "widget": {
+            "name": "sul-gaanalizebuli-pirovneb",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "measure(Total People)",
+                      "expression": "MEASURE(`Total People`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "## <span style=\"text-align:center;display:block\">სულ გაანალიზებული პიროვნება</span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(Total People)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 5,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "tvitnasheni-vs-memkvidreobiti",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "measure(Total People)",
+                      "expression": "MEASURE(`Total People`)"
+                    },
+                    {
+                      "name": "is_self_made",
+                      "expression": "`is_self_made`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "## <span style=\"text-align:center;display:block\">საკუთარი შრომით მიღწეული *vs მემკვიდრეობითი*.</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "measure(Total People)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "is_self_made",
+                  "displayName": "საკუთარი შრომით მიაღწიეს?",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": true,
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 1
+                        }
+                      },
+                      {
+                        "value": false,
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 9
+                        }
+                      }
+                    ]
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 9,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "asakis-ganacxileba-tvitnasheni-vs-memkvidreobiti",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "is_self_made",
+                      "expression": "`is_self_made`"
+                    },
+                    {
+                      "name": "min(age)",
+                      "expression": "MIN(`age`)"
+                    },
+                    {
+                      "name": "q1(age)",
+                      "expression": "PERCENTILE(`age`, 0.25)"
+                    },
+                    {
+                      "name": "median(age)",
+                      "expression": "MEDIAN(`age`)"
+                    },
+                    {
+                      "name": "q3(age)",
+                      "expression": "PERCENTILE(`age`, 0.75)"
+                    },
+                    {
+                      "name": "max(age)",
+                      "expression": "MAX(`age`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">ასაკის განაწილება - self-made vs მემკვიდრეობითი</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "box",
+              "encodings": {
+                "x": {
+                  "fieldName": "is_self_made",
+                  "displayName": "are they self-made?",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "whiskerStart": {
+                    "fieldName": "min(age)"
+                  },
+                  "boxStart": {
+                    "fieldName": "q1(age)"
+                  },
+                  "boxMid": {
+                    "fieldName": "median(age)"
+                  },
+                  "boxEnd": {
+                    "fieldName": "q3(age)"
+                  },
+                  "whiskerEnd": {
+                    "fieldName": "max(age)"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 15,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "industriebis-ganatsema",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "measure(Total People)",
+                      "expression": "MEASURE(`Total People`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">ინდუსტრიების განაწილება</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "industry",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "custom-order",
+                      "orderedValues": [
+                        "Finance & Investments",
+                        "Manufacturing",
+                        "Technology",
+                        "Fashion & Retail",
+                        "Food & Beverage",
+                        "Healthcare",
+                        "Real Estate",
+                        "Diversified",
+                        "Energy",
+                        "Media & Entertainment",
+                        "Metals & Mining",
+                        "Automotive",
+                        "Service",
+                        "Construction & Engineering",
+                        "Sports",
+                        "Logistics",
+                        "Telecom",
+                        "Gambling & Casinos"
+                      ]
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(Total People)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 21,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "asakis-ganacileba",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "age",
+                      "expression": "`age`"
+                    },
+                    {
+                      "name": "measure(Total People)",
+                      "expression": "MEASURE(`Total People`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">ასაკის განაწილება</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "age",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(Total People)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 29,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "ganatsileba-qveynebis-mikhedvit",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    },
+                    {
+                      "name": "measure(Total People)",
+                      "expression": "MEASURE(`Total People`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">განაწილება ქვეყნების მიხედვით(Top 15)</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "country",
+                  "scale": {
+                    "type": "categorical",
+                    "categorySize": {
+                      "type": "number-of-categories",
+                      "number": 15
+                    },
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(Total People)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 37,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "e06291b5",
+            "queries": [
+              {
+                "name": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1aa0811241db8ab6bc4b435fb69ed_country",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    },
+                    {
+                      "name": "country_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "country",
+                    "queryName": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1aa0811241db8ab6bc4b435fb69ed_country"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 3,
+            "width": 4,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "f01b0939",
+            "queries": [
+              {
+                "name": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1aa0811241db8ab6bc4b435fb69ed_industry",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "industry_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "industry",
+                    "queryName": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1aa0811241db8ab6bc4b435fb69ed_industry"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 4,
+            "width": 4,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "intro_note",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### <span style=\"text-align:center;display:block\"><span style=\"color:#AB4057\">**მსოფლიოს მილიარდერების ანალიზი**</span><span style=\"color:#AB4057\"> </span></span>\n",
+                "<p>&nbsp;</p>\n",
+                "\n",
+                "<span style=\"color:#919191\">ამ გვერდზე შეგიძლიათ იხილოთ ძირითადი სტატისტიკა და დემოგრაფიული განაწილება 2023 წლის მონაცემებით. გამოიყენეთ ფილტრები  კონკრეტული ქვეყნის ან ინდუსტრიის შესასწავლად.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 8,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "age_note",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">📈 </span><span style=\"color:#919191\">**ასაკობრივი მაჩვენებელი**</span><span style=\"color:#919191\"> - უმრავლესობა 50-70 წლის ასაკისაა, რაც გვანახებს, რომ საკუთარი შრომით მიღწეული სიმდიდრის შექმნას დრო სჭირდება.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 28,
+            "width": 12,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "geo_context",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">🌎 </span><span style=\"color:#919191\">**გეოგრაფიული განაწილება**</span><span style=\"color:#919191\"> - აშშ, ჩინეთი, საფრანგეთი და გერმანია ლიდერობენ სიაში, რაც სავარაუდოდ გამოწვეულია ქვეყნების წამყვანი ეკონომიკითა და მოსახლეობით.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 36,
+            "width": 12,
+            "height": 1
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "173c3a24",
+      "displayName": "რა აქვთ საერთო წარმატებულ ადამიანებს? - 2 გვერდი",
+      "layout": [
+        {
+          "widget": {
+            "name": "tvitnashenebis-industriis-mikhedvit",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "366450b6",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "measure(self-made numeric)",
+                      "expression": "MEASURE(`self-made numeric`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">self-made მილიარდელების % ინდუსტრიის მიხედვით</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "industry",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(self-made numeric)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "formatTemplate": "{{ @formatted }}%",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "sashualo-asaki-industriis-mikhedvit",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "d91cff36",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "avg_age",
+                      "expression": "`avg_age`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">საშუალო ასაკი ინდუსტრიის მიხედვით</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "industry",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "avg_age",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 20,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "ganatleba-vs-tsarmateba-aris-tu-ara-kavshiri",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4fe84aa6",
+                  "fields": [
+                    {
+                      "name": "avg_education_enrollment",
+                      "expression": "`avg_education_enrollment`"
+                    },
+                    {
+                      "name": "self_made_pct",
+                      "expression": "`self_made_pct`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">განათლება vs წარმატება, არის თუ არა კავშირი?</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "avg_education_enrollment",
+                  "formatTemplate": "{{ @formatted }}%",
+                  "axis": {
+                    "title": "უმაღლესი განათლების ინდექსი"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "self_made_pct",
+                  "formatTemplate": "{{ @formatted }}%",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 30,
+            "width": 12,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "0fa35b66",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#00A972\">თითოეული წერტილი - ერთი ქვეყანაა</span><span style=\"color:#919191\">.</span>\n",
+                "\n",
+                "<span style=\"color:#919191\"> X ღერძი აჩვენებს, რამდენად ხელმისაწვდომია უმაღლესი განათლება იმ ქვეყანაში (რაც მეტია მაჩვენებელი, მით მეტი მოსახლე სწავლობს უნივერსიტეტში). Y ღერძი აჩვენებს, იმ ქვეყნის მილიარდერების რამდენი პროცენტია თვითშექმნილი.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 27,
+            "width": 6,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "top-qveynebi-tvitnashenebis-mikhedvit",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4fe84aa6",
+                  "fields": [
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    },
+                    {
+                      "name": "self_made_count",
+                      "expression": "`self_made_count`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">self-made მილიარდელების % ქვეყნების მიხედვით(ტოპ 15)</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "country",
+                  "scale": {
+                    "type": "categorical",
+                    "categorySize": {
+                      "type": "number-of-categories",
+                      "number": 15
+                    },
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "self_made_count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "page2_intro",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### <span style=\"text-align:center;display:block\"><span style=\"color:#00A972\">**გზა წარმატებისაკენ**</span><span style=\"color:#00A972\"> </span></span>\n",
+                "\n",
+                "<span style=\"color:#919191\">ამ გვერდზე ნახავთ, რა მახასიათებლები აერთიანებს წარმატებულ მეწარმეებს: რომელ ინდუსტრიებში უფრო მეტია საკუთარი შრომით მილიარდების მომპოვებლებთა პროცენტი, არის თუ არა განათლებასა და წარმატებას შორის კავშირი.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "scatter_guide",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">🔍 </span><span style=\"color:#00A972\">**&#32;ანალიზი**</span><span style=\"color:#00A972\"> </span>\n",
+                "\n",
+                "<span style=\"color:#919191\"> თუ წერტილები ქმნიან აღმავალ ხაზს, ესე იგი უმაღლესი განათლების ხელმისაწვდომობა დაკავშირებულია self-made მილიარდელების უფრო მაღალ მაჩვენებელთან.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 27,
+            "width": 6,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "industry_insight",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">🏭 </span><span style=\"color:#919191\">**რას ვასკვნით?**</span><span style=\"color:#919191\"> — ტექნოლოგიები დომინირებს, რადგან ყველაზე მეტ შანს ქმნის წარმატებისაკენ. თუმცა ტრადიციული ინდუსტრიებიც კვლავ ახალი მილიარდერების შექმნის საშუალებას იძლევა.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 12,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "d22265d2",
+      "displayName": "მაგალითები + საქართველო- 3 გვერდი",
+      "layout": [
+        {
+          "widget": {
+            "name": "qartvelta-profilebi",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "6360f5e0",
+                  "fields": [
+                    {
+                      "name": "person_name",
+                      "expression": "`person_name`"
+                    },
+                    {
+                      "name": "record_year",
+                      "expression": "`record_year`"
+                    },
+                    {
+                      "name": "net_worth_usd_billion",
+                      "expression": "`net_worth_usd_billion`"
+                    },
+                    {
+                      "name": "data_source",
+                      "expression": "`data_source`"
+                    },
+                    {
+                      "name": "georgia_gdp_usd_billion",
+                      "expression": "`georgia_gdp_usd_billion`"
+                    },
+                    {
+                      "name": "wealth_pct_gdp",
+                      "expression": "`wealth_pct_gdp`"
+                    },
+                    {
+                      "name": "note",
+                      "expression": "`note`"
+                    }
+                  ],
+                  "disaggregated": true,
+                  "orders": [
+                    {
+                      "direction": "ASC",
+                      "expression": "`record_year`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">ქართველთა პროფილები</span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "person_name",
+                    "displayName": "სახელი"
+                  },
+                  {
+                    "fieldName": "record_year",
+                    "displayName": "წელი"
+                  },
+                  {
+                    "fieldName": "net_worth_usd_billion"
+                  },
+                  {
+                    "fieldName": "data_source",
+                    "displayName": "წყარო"
+                  },
+                  {
+                    "fieldName": "georgia_gdp_usd_billion"
+                  },
+                  {
+                    "fieldName": "wealth_pct_gdp",
+                    "formatTemplate": "{{ @formatted }}%"
+                  },
+                  {
+                    "fieldName": "note",
+                    "displayName": "შენიშვნა"
+                  }
+                ],
+                "rowOrder": [
+                  {
+                    "by": "column",
+                    "field": {
+                      "index": 1
+                    }
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "datoes-tu-ara-universiteti",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe8805b5",
+                  "fields": [
+                    {
+                      "name": "dropped_out",
+                      "expression": "`dropped_out`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">დატოვეს თუ არა უნივერსიტეტი</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "dropped_out",
+                  "displayName": "დატოვეს უნივერსიტეტი?",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 27,
+            "width": 5,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "ganvikhilot-zogierti-miliardelis-tsarsuli",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe8805b5",
+                  "fields": [
+                    {
+                      "name": "person_name",
+                      "expression": "`person_name`"
+                    },
+                    {
+                      "name": "age",
+                      "expression": "`age`"
+                    },
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    },
+                    {
+                      "name": "net_worth_million_usd",
+                      "expression": "`net_worth_million_usd`"
+                    },
+                    {
+                      "name": "dropped_out",
+                      "expression": "`dropped_out`"
+                    },
+                    {
+                      "name": "first_venture_failed",
+                      "expression": "`first_venture_failed`"
+                    },
+                    {
+                      "name": "age_at_first_success",
+                      "expression": "`age_at_first_success`"
+                    },
+                    {
+                      "name": "industry_pivots",
+                      "expression": "`industry_pivots`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "განვიხილოთ ზოგიერთი მილიარდელის წარსული:",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "person_name"
+                  },
+                  {
+                    "fieldName": "age"
+                  },
+                  {
+                    "fieldName": "industry"
+                  },
+                  {
+                    "fieldName": "country"
+                  },
+                  {
+                    "fieldName": "net_worth_million_usd"
+                  },
+                  {
+                    "fieldName": "dropped_out"
+                  },
+                  {
+                    "fieldName": "first_venture_failed"
+                  },
+                  {
+                    "fieldName": "age_at_first_success"
+                  },
+                  {
+                    "fieldName": "industry_pivots"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 20,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "chavarda-tu-ara-pirveli-wamocneba",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe8805b5",
+                  "fields": [
+                    {
+                      "name": "first_venture_failed",
+                      "expression": "`first_venture_failed`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">ჩავარდა თუ არა პირველი წამოწყება</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "first_venture_failed",
+                  "displayName": "პირველ ჯერზე მიაღწიეს წარმატებას?",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 27,
+            "width": 5,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "sashualo-asaki-pirveli-tsarmatebistvis",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe8805b5",
+                  "fields": [
+                    {
+                      "name": "avg(age_at_first_success)",
+                      "expression": "AVG(`age_at_first_success`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">საშუალო ასაკი პირველი წარმატების დროს</span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(age_at_first_success)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 33,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "56be1feb",
+            "queries": [
+              {
+                "name": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1aa082faa1e3099d64a267a93f9c8_person_name",
+                "query": {
+                  "datasetName": "fe8805b5",
+                  "fields": [
+                    {
+                      "name": "person_name",
+                      "expression": "`person_name`"
+                    },
+                    {
+                      "name": "person_name_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "person_name",
+                    "queryName": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1aa082faa1e3099d64a267a93f9c8_person_name"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 26,
+            "width": 4,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "georgia_context_note",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### <span style=\"text-align:center;display:block\"><span style=\"color:#AB4057\">**საქართველოს პერსპექტივა**</span><span style=\"color:#919191\"> </span></span>\n",
+                "\n",
+                "### <span style=\"color:#919191;font-size:14px\"> ქვემოთ მოცემული ცხრილი აჩვენებს ქართველი მილიარდერების/მილიონერების შედარებას საქართველოს მთლიან შიდა პროდუქტთან (GDP). ეს გვეხმარება გავიგოთ, რამდენად მასშტაბურია მათი სიმდიდრე ქვეყნის ეკონომიკის ფონზე.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "examples_intro",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">💡 </span><span style=\"color: #00A972;\">**რეალური მაგალითები**</span><span style=\"color:#919191\"> </span>\n",
+                "\n",
+                "<span style=\"color:#919191\"> ქვემოთ მოყვანილი მაგალითები აჩვენებს, რომ წარმატება სხადასხვა გზით მიიღწევა. ზოგმა დატოვა უნივერსიტეტი, ზოგმა რამდენჯერმე შეცვალა ინდუსტრია.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 18,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "gdp_explanation",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">💰 </span><span style=\"color:#919191\">**რას ნიშნავს GDP %?**</span><span style=\"color:#919191\"> — თუ ვინმეს სიმდიდრე 10% GDP-სია, ეს ნიშნავს რომ მათი მთლიანი ქონება უდრის ქვეყნის ერთი წლის შიდა ეკონომიკური პროდუქციის 10%-ს.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 2,
+            "width": 8,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "forbes-monacemebit-bidzina-ivanishvilis-qoneba-saqartvelos-gdp",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "6360f5e0",
+                  "fields": [
+                    {
+                      "name": "record_year",
+                      "expression": "`record_year`"
+                    },
+                    {
+                      "name": "wealth_pct_gdp",
+                      "expression": "`wealth_pct_gdp`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">forbes-ის მონაცემებით ბიძინა ივანიშვილის ქონების შედარება საქართველოს GDP-სთან</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "record_year",
+                  "displayName": "წელი",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "wealth_pct_gdp",
+                  "displayName": "ქვეყნის GDP-ის %",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "e8bea799",
+            "multilineTextboxSpec": {
+              "lines": [
+                "2010 წელს ივანიშვილის ქონება საქართველოს ეკონომიკის თითქმის 40%-ს შეადგენდა - 2025 წლისთვის ეს წილი 7%-მდე დაეცა. ეს შეიძლება არა მისი ქონების დაკარგვაზე მიუთითებდეს, არამედ იმაზე, რომ საქართველოს ეკონომიკა გაცილებით სწრაფად გაიზარდა, ვიდრე მისი პირადი ქონება."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 12,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "2a612ff5",
+      "displayName": "21-ე საუკუნის რევოლუცია - 4 გვერდი",
+      "layout": [
+        {
+          "widget": {
+            "name": "epokis-filtri",
+            "queries": [
+              {
+                "name": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1ab05cb6614bcb97d8549d5984a8b_era_group",
+                "query": {
+                  "datasetName": "84b4db69",
+                  "fields": [
+                    {
+                      "name": "era_group",
+                      "expression": "`era_group`"
+                    },
+                    {
+                      "name": "era_group_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "ეპოქის ფილტრი",
+                  "fields": []
+                }
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "era_group",
+                    "queryName": "dashboards/01f1aa07e1191500af7c07af7d648933/datasets/01f1ab05cb6614bcb97d8549d5984a8b_era_group"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 5,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "romel-industrebshi-yvela-sastsavli-tsinmde",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "160e2dc2",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "years_founding_to_peak",
+                      "expression": "`years_founding_to_peak`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">რომელ ინდუსტრიებმა/კომპანიებმა შეძლეს ყველაზე სწრაფი წინსვლა?</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "industry",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "years_founding_to_peak",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "tslebi-datskebidan-pikamde",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "160e2dc2",
+                  "fields": [
+                    {
+                      "name": "person_name",
+                      "expression": "`person_name`"
+                    },
+                    {
+                      "name": "years_founding_to_peak",
+                      "expression": "`years_founding_to_peak`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block\">წლები დაწყებიდან მწვერვალამდე</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "person_name",
+                  "displayName": "სახელი",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "years_founding_to_peak",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "industriebi-epokis-mikhedvit",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "160e2dc2",
+                  "fields": [
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "era",
+                      "expression": "`era`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">ინდუსტრიები ეპოქის მიხედვით</span>",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "era",
+                  "displayName": "საუკუნე",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(count)",
+                  "displayName": "რომელი ინდუსტრიები დომინირებდნენ?",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "industry",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 20,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "19-21-saukunes-gamochinebuli-metsarmeebis-sia",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "160e2dc2",
+                  "fields": [
+                    {
+                      "name": "person_name",
+                      "expression": "`person_name`"
+                    },
+                    {
+                      "name": "era",
+                      "expression": "`era`"
+                    },
+                    {
+                      "name": "industry",
+                      "expression": "`industry`"
+                    },
+                    {
+                      "name": "years_founding_to_peak",
+                      "expression": "`years_founding_to_peak`"
+                    },
+                    {
+                      "name": "self_made",
+                      "expression": "`self_made`"
+                    },
+                    {
+                      "name": "note",
+                      "expression": "`note`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">19-21 საუკუნის გამოჩენილი მეწარმეების სია</span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "person_name",
+                    "displayName": "სახელი"
+                  },
+                  {
+                    "fieldName": "era",
+                    "displayName": "საუკუნე"
+                  },
+                  {
+                    "fieldName": "industry",
+                    "displayName": "ინდუსტრია"
+                  },
+                  {
+                    "fieldName": "years_founding_to_peak"
+                  },
+                  {
+                    "fieldName": "self_made"
+                  },
+                  {
+                    "fieldName": "note",
+                    "displayName": "შენიშვნა"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 28,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "ganakhevrebuli-dro-tsarmatebamde",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "84b4db69",
+                  "fields": [
+                    {
+                      "name": "avg_years_to_peak",
+                      "expression": "`avg_years_to_peak`"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`era_group` IN (`era_group`) OR TRUE"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "### <span style=\"text-align:center;display:block;\">**განახევრებული დრო** წარმატებამდე</span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg_years_to_peak"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 2,
+            "width": 7,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "historical_intro",
+            "multilineTextboxSpec": {
+              "lines": [
+                "### <span style=\"text-align:center;display:block\"><span style=\"color:#AB4057\">**დომინანტი მილიარდელები საუკუნეების განმავლობაში**</span><span style=\"color:#AB4057\"> </span></span>\n",
+                "\n",
+                "<span style=\"color:#919191\"> როგორ ედარებიან დღევანდელი მილიარდერები წინა თაობების უდიდეს პიროვნებებთან? </span>\n",
+                "\n",
+                "<span style=\"color:#919191\">ამ გვერდზე ნახავთ, რა ინდუსტრიები დომინირებდნენ სხვადასხვა ეპოქაში და რამდენი დრო სჭირდებოდათ წარმატების მისაღწევად.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "era_comparison",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">⏳ </span><span style=\"color:#919191\">**ისტორიული კონტექსტი**</span><span style=\"color:#919191\"> — ინდუსტრიული რევოლუცია (რკინიგზა, ფოლადი), 20-ე საუკუნე (ავტომობილი, ნავთობი), დღეს (ტექნოლოგიები, ინტერნეტი) — თითოეულ ეპოქას ჰქონდა თავისი დომინანტი სექტორები.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 18,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "years_context",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">⏱️ </span><span style=\"color:#919191\">**დროის ფაქტორი**</span><span style=\"color:#919191\"> - რამდენი წელი დასჭირდათ მეწარმეებს დაწყებიდან სიმდიდრის მწვერვალამდე მისასვლელად? ეს განსხვავდება ეპოქისა და ინდუსტრიის მიხედვით.</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "gdp_context",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color:#919191\">📊 </span><span style=\"color:#919191\">**რას გვანახებენ რიცხვები?**</span><span style=\"color:#919191\"> - </span>აშშ-ის მშპ-ის პროცენტული წილი (GDP%) იდეალური საზომია ეპოქებს შორის ინფლაციური განსხვავების დასაბალანსებლად. მაგალითად, ჯონ როკფელერის ქონება 1900 წელს აშშ-ის მშპ-ის 2%-ს შეადგენდა, რაც დღევანდელი მსყიდველობითი უნარით ასობით მილიარდი დოლარის ექვივალენტია."
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 26,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "32c2608f",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"color: #919191;\">შენიშვნა: ისტორიული ფიგურებისთვის ხშირად მხოლოდ ნაწილობრივი მონაცემია ხელმისაწვდომი, რაც თავისთავად აჩვენებს, რამდენად გაუმჯობესდა მონაცემთა აღრიცხვა თანამედროვე ეპოქაში</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 34,
+            "width": 7,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#FAFAFB",
+        "dark": "#1F272D"
+      },
+      "widgetBackgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#11171C"
+      },
+      "fontColor": {
+        "light": "#11171C",
+        "dark": "#E8ECF0"
+      },
+      "selectionColor": {
+        "light": "#2272B4",
+        "dark": "#8ACAFF"
+      },
+      "visualizationColors": [
+        "#AB4057",
+        "#FCA4A1",
+        "#077A9D",
+        "#99DDB4",
+        "#919191",
+        "#FFAB00",
+        "#00A972",
+        "#FF3621",
+        "#8BCAE7",
+        "#BF7080"
+      ],
+      "widgetHeaderAlignment": "LEFT",
+      "continuousGradient": {
+        "lightMode": {
+          "fromCategoricalIndex": 5
+        },
+        "darkMode": {
+          "fromCategoricalIndex": 5
+        }
+      }
+    },
+    "applyModeEnabled": false
+  }
+}
